@@ -9,21 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
     private var countNumber: Int = 0
-
-    @IBOutlet weak var counter: UILabel!
-    @IBOutlet weak var plusButton: UIButton!
-    @IBOutlet weak var minusButton: UIButton!
-    @IBOutlet weak var resetButton: UIButton!
-    @IBOutlet weak var changesHistory: UITextView!
     
-    
-    private func dateFormat() -> String {
-        let currentDate = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return formatter.string(from: currentDate)
-    }
-    
+    @IBOutlet weak private var counter: UILabel!
+    @IBOutlet weak private var plusButton: UIButton!
+    @IBOutlet weak private var minusButton: UIButton!
+    @IBOutlet weak private var resetButton: UIButton!
+    @IBOutlet weak private var changesHistory: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,14 +24,21 @@ class ViewController: UIViewController {
         changesHistory.isEditable = false
         changesHistory.isSelectable = false
     }
-
-    @IBAction func increaseCountNumber(_ sender: Any) {
+    
+    private func dateFormat() -> String {
+        let currentDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: currentDate)
+    }
+    
+    @IBAction private func increaseCountNumber(_ sender: Any) {
         countNumber += 1
         counter.text = "Значение счётчика:\n \(countNumber)"
         changesHistory.text += "\n\(dateFormat()) Значение изменено на +1"
     }
     
-    @IBAction func decreaseCountNumber(_ sender: Any) {
+    @IBAction private func decreaseCountNumber(_ sender: Any) {
         if countNumber > 0 {
             countNumber -= 1
             counter.text = "Значение счётчика:\n \(countNumber)"
@@ -50,9 +48,9 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func resetCounter(_ sender: Any) {
-            countNumber = 0
-            counter.text = "Значение счётчика:\n \(countNumber)"
+    @IBAction private func resetCounter(_ sender: Any) {
+        countNumber = 0
+        counter.text = "Значение счётчика:\n \(countNumber)"
         changesHistory.text += "\n\(dateFormat()) Значение сброшено"
     }
 }
